@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create New Event{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Create a New Event</h1>
+
+        <div class="card">
+            <div class="card-body">
+                {{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                        <div class="invalid-feedback">
+                            Please enter the event name.
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        {{ form_label(form.date) }}
+                        {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                        <div class="invalid-feedback">
+                            Please enter a valid date and time.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form_label(form.location) }}
+                        {{ form_widget(form.location, {'attr': {'class': 'form-control'}}) }}
+                        <div class="invalid-feedback">
+                            Please enter the event location.
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        {{ form_label(form.availableSpots) }}
+                        {{ form_widget(form.availableSpots, {'attr': {'class': 'form-control'}}) }}
+                        <div class="invalid-feedback">
+                            Please enter the number of available spots.
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Create Event</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

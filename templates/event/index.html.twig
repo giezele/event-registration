@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Available Events{% endblock %}
+
+{% block body %}
+    <h1 class="my-4">Available Events</h1>
+
+    {% if events|length > 0 %}
+        <div class="row">
+            {% for event in events %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.name }}</h5>
+                            <p class="card-text">
+                                <strong>Date:</strong> {{ event.date|date('Y-m-d H:i') }}<br>
+                                <strong>Location:</strong> {{ event.location }}<br>
+                                <strong>Available Spots:</strong> {{ event.availableSpots }}
+                            </p>
+                            <a href="{{ path('event_register', { 'id': event.id }) }}" class="btn btn-primary">
+                                Register
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No events available at the moment.</p>
+    {% endif %}
+{% endblock %}
+
