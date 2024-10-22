@@ -45,7 +45,7 @@ This will build the Docker containers for the application and start them in the 
 
 ### Install Dependencies
 
-Once the containers are up, you need to install the PHP dependencies via Composer.
+Once the containers are up, you need to install the PHP dependencies via Composer. This will also run the scrip to generate `APP_SECRET` to `.env` in order to ensure CSRF Protection
 
 ```bash
 docker-compose exec php composer install
