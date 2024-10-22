@@ -17,7 +17,7 @@ Ensure you have the following installed on your machine:
 First, clone the project from GitHub:
 
 ```bash
-git clone https://github.com/yourusername/event-registration.git
+git clone https://github.com/giezele/event-registration
 cd event-registration
 ```
 ### Environment Configuration
@@ -68,20 +68,8 @@ docker-compose exec php bin/console doctrine:fixtures:load
 ```
 ### Accessing the Application
 After starting the Docker containers, you can access the application at:
-```arduino
+```
 http://localhost:8080
-```
-### Running Tests
-To ensure everything is working properly, you can run the functional tests.
-
-1. First, create the test database:
-```bash
-docker-compose exec php bin/console doctrine:database:create --env=test  --if-not-exists
-docker-compose exec php bin/console doctrine:migrations:migrate --env=test --no-interaction
-```
-2. Run the tests using PHPUnit:
-```bash
-docker-compose exec php bin/phpunit
 ```
 
 ### Endpoints
@@ -100,6 +88,19 @@ docker-compose exec php bin/phpunit
   * URL: http://localhost:8080/events/register/{id}
   * Description: Register for an event (replace {id} with the event ID).
   * Method: GET (view form), POST (submit form)
+
+### Running Tests
+To ensure everything is working properly, you can run the functional tests.
+
+1. First, create the test database:
+```bash
+docker-compose exec php bin/console doctrine:database:create --env=test  --if-not-exists
+docker-compose exec php bin/console doctrine:migrations:migrate --env=test --no-interaction
+```
+2. Run the tests using PHPUnit:
+```bash
+docker-compose exec php bin/phpunit
+```
 
 ### Stopping the Containers
 
