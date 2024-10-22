@@ -22,12 +22,6 @@ cd event-registration
 ```
 ### Environment Configuration
 
-Duplicate the `.env.example` file to create a `.env` file:
-
-```bash
-cp .env.example .env
-```
-
 Make any necessary changes to the environment variables in the `.env` file. For instance, update database credentials or other configurations. By default, it will use MySQL.
 ```makefile
 DATABASE_URL="mysql://symfony:symfony@db:3306/symfony?serverVersion=8.0"
@@ -75,17 +69,17 @@ http://localhost:8080
 ### Endpoints
 
 * View All Events:
-  * URL: http://localhost:8080/events
+  * URL: `http://localhost:8080/events`
   * Description: Displays a list of available events with details (name, date, location, available spots).
   * Method: GET
   
 * Create a New Event:
-  * URL: http://localhost:8080/events/create
+  * URL: `http://localhost:8080/events/create`
   * Description: Form to create a new event.
   * Method: GET (view form), POST (submit form)
   
 * Register for an Event:
-  * URL: http://localhost:8080/events/register/{id}
+  * URL: `http://localhost:8080/events/register/{id}`
   * Description: Register for an event (replace {id} with the event ID).
   * Method: GET (view form), POST (submit form)
 

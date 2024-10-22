@@ -8,16 +8,10 @@ use App\Entity\Event;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
-class EventService
+class EventRegistrationService
 {
     public function __construct(private EntityManagerInterface $em)
     {
-    }
-
-    public function createEvent(Event $event): void
-    {
-        $this->em->persist($event);
-        $this->em->flush();
     }
 
     public function registerUserForEvent(Event $event, User $user): void
@@ -31,10 +25,5 @@ class EventService
 
         $this->em->persist($user);
         $this->em->flush();
-    }
-
-    public function getAllEvents(): array
-    {
-        return $this->em->getRepository(Event::class)->findAll();
     }
 }
