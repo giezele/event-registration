@@ -64,7 +64,8 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "if [ ! -f .env ] || ! grep -q 'APP_SECRET=' .env; then echo 'Generating APP_SECRET...'; echo 'APP_SECRET=$(php -r \"echo bin2hex(random_bytes(16));\")' >> .env; fi"
         ],
         "post-update-cmd": [
             "@auto-scripts"
