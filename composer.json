@@ -65,8 +65,8 @@
         },
         "post-install-cmd": [
             "@auto-scripts",
-            "if [ ! -f .env ] || ! grep -q 'APP_SECRET=' .env; then echo 'Generating APP_SECRET...'; echo 'APP_SECRET=$(php -r \"echo bin2hex(random_bytes(16));\")' >> .env; fi"
-        ],
+            "if [ ! -f .env ] || ! grep -q 'APP_SECRET=' .env; then echo 'Generating APP_SECRET...'; echo \"APP_SECRET=$(php -r 'echo bin2hex(random_bytes(16));')\" >> .env; fi",
+            "php bin/console cache:clear"],
         "post-update-cmd": [
             "@auto-scripts"
         ]
