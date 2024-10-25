@@ -6,7 +6,7 @@ namespace App\Controller\Event;
 
 use App\Entity\Event;
 use App\Form\EventType;
-use App\Service\EventCreationService;
+use App\Service\Event\EventCreationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

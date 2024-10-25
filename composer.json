@@ -17,6 +17,7 @@
         "symfony/form": "7.1.*",
         "symfony/framework-bundle": "7.1.*",
         "symfony/runtime": "7.1.*",
+        "symfony/security-bundle": "7.1.*",
         "symfony/twig-bundle": "7.1.*",
         "symfony/validator": "7.1.*",
         "symfony/yaml": "7.1.*"
@@ -67,8 +68,7 @@
         "post-install-cmd": [
             "@auto-scripts",
             "echo 'Ensuring APP_SECRET is set correctly...';",
-            "sed -i '/^APP_SECRET=/d' .env",
-            "echo \"APP_SECRET=$(php -r 'echo bin2hex(random_bytes(16));')\" >> .env",
+            "if [ ! -f .env.local ] || ! grep -q '^APP_SECRET=' .env.local; then echo 'Generating APP_SECRET...'; echo \"APP_SECRET=$(php -r 'echo bin2hex(random_bytes(16));')\" >> .env.local; fi",
             "php bin/console cache:clear"
         ],
         "post-update-cmd": [

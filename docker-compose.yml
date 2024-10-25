@@ -10,16 +10,23 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - symfony
 
   php:
     build:
       context: .
     ports:
       - "9000:9000"
+    environment:
+      APP_SECRET: "${APP_SECRET}"
     volumes:
       - .:/var/www/html
+      - cache_data:/var/www/html/var/cache
     depends_on:
       - db
+    networks:
+      - symfony
 
   nginx:
     image: nginx:alpine
@@ -30,6 +37,12 @@ services:
       - .:/var/www/html
     depends_on:
       - php
+    networks:
+      - symfony
 
 volumes:
   db_data:
+  cache_data:
+
+networks:
+  symfony:

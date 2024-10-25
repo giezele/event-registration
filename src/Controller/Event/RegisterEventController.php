@@ -6,8 +6,10 @@ namespace App\Controller\Event;
 
 use App\Entity\Event;
 use App\Entity\User;
+use App\Exception\NoSpotsAvailableException;
 use App\Form\EventRegistrationType;
-use App\Service\EventRegistrationService;
+use App\Security\Voter\EventVoter;
+use App\Service\Event\EventRegistrationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,11 +24,8 @@ class RegisterEventController extends AbstractController
     #[Route('/events/register/{id}', name: 'event_register', methods: ['GET', 'POST'])]
     public function __invoke(Request $request, Event $event): Response
     {
-        // Prevent access to the registration form if no spots are available
-        if ($event->getAvailableSpots() <= 0) {
-            $this->addFlash('error', 'No spots available for this event.');
-            return $this->redirectToRoute('event_index');
-        }
+        // Prevent access to the registration form if no spots are available - use security voter
+        $this->denyAccessUnlessGranted(EventVoter::REGISTER, $event);
 
         $user = new User();
         $form = $this->createForm(EventRegistrationType::class, $user);
